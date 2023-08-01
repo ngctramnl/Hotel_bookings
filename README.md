@@ -8,5 +8,8 @@
 
 # Deliverables
 - How do the hotel stays of guests with/without children vary throughout the year? Is this different in the city and the resort hotel?
+![](https://github.com/ngctramnl/Hotel_bookings/blob/main/Stays_across_month.png)
 - Are hotel guests with children more likely to require a parking space?
+![](https://github.com/ngctramnl/Hotel_bookings/blob/main/Parking.png)
 - The relationship between guests with chidren and their spendings
+![](https://github.com/ngctramnl/Hotel_bookings/blob/main/Boxplot.png)
