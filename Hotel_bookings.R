@@ -12,7 +12,6 @@ hotel_stays <- hotel %>%
     TRUE ~ "none"),
     required_car_parking_spaces = case_when(required_car_parking_spaces > 0 ~ "parking",
                                              TRUE ~ "none"),
-    
     select(-is_canceled, -reservation_status, -babies)
 
 hotel_stays %>%
@@ -23,10 +22,11 @@ library(skimr)
 skim(hotel_stays)
 
 #exploratory plots
-#visualise spike of months with chidren proportion
+         
+#How do the hotel stays of guests with/without children vary throughout the year? Is this different in the city and the resort hotel?
 hotel_stays %>%
   mutate(arrival_date_month = factor(arrival_date_month,
-                                          levels= month.name)) %>%
+                                    levels= month.name)) %>%
   count(hotel, arrival_date_month, children) %>%
   group_by(hotel, children) %>%
   mutate(proportion= n/sum(n)) %>%
@@ -35,7 +35,8 @@ hotel_stays %>%
   scale_y_continuous(labels = scales::percent_format()) +
   facet_wrap(~hotel, nrow=2) +
   xlab("Month")
-#visualise spike of parking demand with chidren proportion
+         
+#Are hotel guests with children more likely to require a parking space?
 hotel_stays %>%
   count(required_car_parking_spaces, hotel, children) %>%
   group_by(hotel, children) %>%
@@ -44,7 +45,9 @@ hotel_stays %>%
   geom_col(position="dodge")+
   scale_y_continuous(labels = scales::percent_format()) +
   facet_wrap(~hotel, nrow=2)
-
+         
+#The relationship between guests with children and their spending
+#adr= how much people spend
 hotel_stays %>%
   count(adr, children) %>%
   group_by(children) %>%
